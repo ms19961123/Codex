@@ -1,1 +1,124 @@
-
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/styles.css b/styles.css
+index 8b137891791fe96927ad78e64b0aad7bded08bdc..90f42b4725428d004562331f20032752809d5100 100644
+--- a/styles.css
++++ b/styles.css
+@@ -1 +1,115 @@
++:root {
++  --bg: #070c1b;
++  --surface: #111a31;
++  --surface-2: #17233f;
++  --text: #e8ecf8;
++  --muted: #a7b0c6;
++  --accent: #6be7ff;
++  --accent-2: #8d7dff;
++  --success: #6effb4;
++  --max: 1120px;
++}
+ 
++* { box-sizing: border-box; }
++html { scroll-behavior: smooth; }
++body {
++  margin: 0;
++  font-family: 'Inter', sans-serif;
++  background: radial-gradient(circle at 20% 10%, #172643 0%, var(--bg) 50%);
++  color: var(--text);
++}
++
++.container { width: min(var(--max), 92%); margin: 0 auto; }
++
++.site-header {
++  position: sticky;
++  top: 0;
++  backdrop-filter: blur(12px);
++  background: rgba(7, 12, 27, 0.72);
++  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
++  z-index: 10;
++}
++
++.nav { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
++.logo { color: var(--text); text-decoration: none; font-weight: 800; letter-spacing: 0.2px; }
++.logo span { color: var(--accent); }
++.nav-links { list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0; }
++.nav-links a {
++  text-decoration: none;
++  color: var(--muted);
++  font-weight: 500;
++  padding: 0.5rem 0.75rem;
++  border-radius: 999px;
++  transition: 220ms ease;
++}
++.nav-links a:hover { color: white; background: rgba(255, 255, 255, 0.08); }
++
++.hero { padding: 7rem 0 5rem; }
++.hero-content {
++  background: linear-gradient(130deg, rgba(107, 231, 255, 0.14), rgba(141, 125, 255, 0.11));
++  border: 1px solid rgba(255, 255, 255, 0.12);
++  border-radius: 24px;
++  padding: 2.6rem;
++  animation: rise 700ms ease;
++}
++.eyebrow { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; font-size: 0.78rem; }
++h1 { font-size: clamp(1.8rem, 4.3vw, 3.2rem); margin: 0.6rem 0 1rem; }
++.hero p { color: var(--muted); max-width: 850px; }
++.cta {
++  display: inline-block;
++  margin-top: 1rem;
++  padding: 0.8rem 1.2rem;
++  border-radius: 12px;
++  text-decoration: none;
++  font-weight: 700;
++  color: #06131f;
++  background: linear-gradient(90deg, var(--accent), var(--success));
++}
++
++.section { padding: 1.2rem 0 4rem; }
++.section h2 { margin-bottom: 0.7rem; font-size: 1.8rem; }
++.section-copy { color: var(--muted); margin-bottom: 1.25rem; }
++.alt { background: rgba(255, 255, 255, 0.02); }
++
++.grid-two { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
++.card {
++  background: var(--surface);
++  border: 1px solid rgba(255, 255, 255, 0.12);
++  border-radius: 18px;
++  padding: 1.25rem;
++  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
++}
++.card h3 { margin-top: 0.3rem; }
++.card p, .card li, .muted { color: var(--muted); }
++.card ul { padding-left: 1rem; }
++
++.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.7rem; margin-top: 1rem; }
++.stats div { background: var(--surface-2); border-radius: 12px; padding: 0.8rem; }
++.stats span { display: block; font-size: 1.2rem; font-weight: 700; }
++.stats small { color: var(--muted); }
++
++.chart-card {
++  background: var(--surface);
++  border: 1px solid rgba(255,255,255,0.1);
++  border-radius: 18px;
++  padding: 1rem;
++  margin: 1rem 0;
++}
++canvas { width: 100% !important; max-height: 360px; }
++.chart-controls { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
++select, input[type='range'] { accent-color: var(--accent); }
++
++.implied-price { font-size: 2rem; font-weight: 800; color: var(--success); margin: 0.8rem 0 0.4rem; }
++
++.footer { padding: 2rem 0 3rem; color: var(--muted); text-align: center; }
++
++.reveal { opacity: 0; transform: translateY(14px); transition: 700ms ease; }
++.reveal.visible { opacity: 1; transform: translateY(0); }
++
++@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
++
++@media (max-width: 900px) {
++  .grid-two, .stats { grid-template-columns: 1fr; }
++  .nav-links { gap: 0.3rem; font-size: 0.9rem; }
++  .hero-content { padding: 1.4rem; }
++}
+ 
+EOF
+)
